@@ -6,3 +6,5 @@ g=gspeech()
 #g.record(3)
 #print g.recognize()
 g.listen()
+#print g.speek(u"Отлично, а у Вас?")
+
