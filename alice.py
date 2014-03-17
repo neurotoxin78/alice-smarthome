@@ -1,10 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from multiprocessing import Process, Queue
 
-from common.recognize import gspeech_api as gspeech
-g=gspeech()
-#g.record(3)
-#print g.recognize()
-g.listen()
-#print g.speek(u"Отлично, а у Вас?")
+from sensors.ear.listener import listener
+from console.server import cons
 
+ears = listener()
+csrv = cons()
+
+if __name__ == "__main__":
+    plistener=Process(target=csrv.start,args=())
+    pcsrv=Process(target=ears.listen_forever,args=())
+    plistener.start()
+#    plistener.join()
+    pcsrv.start()
+#    pcsrv.join()
